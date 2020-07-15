@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@16/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/@babel/standalone@7/babel.min.js"
+    ></script>
+    <script type="text/babel">
+      const rootElement = document.getElementById('root');
+
+      function App(props) {
+        console.log('ínicio render App');
+
+        const [channelName, setChannelName] = React.useState(() => {
+          console.log('useState');
+          return 'Default';
+        });
+
+        function handleClick() {
+          setChannelName('Lucas Nhimi');
+        }
+
+        React.useEffect(() => {
+          console.log('useEffect com dependencia (vazio)');
+        }, []);
+
+        React.useEffect(() => {
+          console.log('useEffect com dependencia');
+        }, [channelName]);
+
+        const element = (
+          <div>
+            <h1>REACT.JS - GUIA PARA INICIANTES (COMPLETO 2020)</h1>
+            <button onClick={handleClick}>Exibir nome do canal</button>
+            <h3>{channelName}</h3>
+          </div>
+        );
+
+        console.log('final render App');
+        return element;
+      }
+
+      ReactDOM.render(<App />, rootElement);
+    </script>
+  </body>
+</html>
